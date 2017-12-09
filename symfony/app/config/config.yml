@@ -88,11 +88,11 @@ doctrine:
         #   3. Uncomment next line:
         #path: '%database_path%'
 
-fos_rest:
-    format_listener:
-        rules:
-            - { path: '^/admin', priorities: json, fallback_format: json, prefer_extension: false }
-            - { path: '^/', stop: true }
-    routing_loader:
-        default_format: json
-        include_format: false
+#fos_rest:
+#    format_listener:
+#        rules:
+#            - { path: '^/admin', priorities: json, fallback_format: json, prefer_extension: false }
+#            - { path: '^/', stop: true }
+#    routing_loader:
+#        default_format: json
+#        include_format: false

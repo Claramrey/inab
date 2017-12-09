@@ -47,6 +47,7 @@ security:
     access_control:
         # cualquier usuario puede acceder al formulario de login
         - {path: ^/front/security/login, roles: IS_AUTHENTICATED_ANONYMOUSLY} 
+#        - {path: ^/front, roles: ROLE_ADMIN} 
         # sólo los usuarios con permisos de administrador pueden acceder al backoffice
         - {path: ^/admin, roles: ROLE_ADMIN}
     

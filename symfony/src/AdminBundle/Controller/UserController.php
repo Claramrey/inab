@@ -27,7 +27,7 @@ class UserController extends Controller implements ClassResourceInterface{
 		$user_repository = $em->getRepository('CoreBundle:TblUsers');
 
 		// Se obtienen los permisos de lectura para el submódulo de usuarios. Si no tiene, se devuelve una excepción
-//		$this->__checkPermissions('view', $this->__getUsersSubmodule());
+		$this->__checkPermissions('view', null);
 		
 		// Se obtiene el usuario cuyo identificador se corresponde con el recibido por parámetro
 		$user = $helpers->getResult($user_repository->getUser($id));
@@ -49,9 +49,6 @@ class UserController extends Controller implements ClassResourceInterface{
 		$em = $this->getDoctrine()->getManager();	
 		$user_repository = $em->getRepository('CoreBundle:TblUsers');
 		
-		// Se comprueba si el usuario tiene permisos de creación para el submódulo de usuarios. Si no tiene, se devuelve una excepción
-//		$this->__checkPermissions('create', $this->__getUsersSubmodule());
-		
 		// Se checkea si existen todos los parámetros de entrada obligatorios. Si alguno de ellos no existe, se genera una excepción
 		$mandatory_params = ['name','email','password'];
 		// Se obtiene la localidad dado que existen códigos postales repetidos asociados a distintas localidades. En caso de tener que evaluar uno de ellos, se chequeará la localidad
@@ -62,6 +59,24 @@ class UserController extends Controller implements ClassResourceInterface{
 		$user_obj = $helpers->getResult($user_repository->setDataNewUser($params['name'],$params['email'],$params['password'],$params['last_name']));
 				
 		return $this->getAction($user_obj->getId());		
+	}
+	
+	
+	
+	/********** FUNCIONES AUXILIARES **********/ 
+
+	/**
+     * Comprueba si el usuario tiene los permisos necesarios para realizar la acción $action del sumbódulo recibido por parámetro
+     *
+     * @return bool or exception
+     */	
+	private function __checkPermissions($action, $submodule) {	
+		
+		if (!$this->isGranted($action, $submodule)) { // User hasn't permissions
+			throw new CustomException('010308'); 
+		}
+
+		return true;
 	}
 	
 }

@@ -1,0 +1,4 @@
+user_get:
+    path: /detail/{id}
+    defaults: { _controller: "FrontBundle:User:detail", id:null }
+    methods: GET

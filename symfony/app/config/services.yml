@@ -38,6 +38,13 @@ services:
         class: CoreBundle\EventListener\CustomExceptionListener
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+
+    admin.submodules_voter:
+        class: AdminBundle\Security\SubmodulesVoter
+        arguments: ['@security.access.decision_manager',"@doctrine.orm.entity_manager"]
+        tags:
+            - { name: security.voter }  
+        public: false   
         
     core.helpers:
         class: CoreBundle\Services\Helpers
