@@ -1,0 +1,46 @@
+CoreBundle\Entity\TblCategoryGoals:
+    type: entity
+    table: tbl_category_goals
+    indexes:
+        fk_category_goals_idx:
+            columns:
+                - category_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        goalType:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: goal_type
+        totalGoal:
+            type: float
+            nullable: false
+            precision: 11
+            scale: 2
+            column: total_goal
+        budgeted:
+            type: float
+            nullable: true
+            precision: 11
+            scale: 2
+    manyToOne:
+        category:
+            targetEntity: TblCategory
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

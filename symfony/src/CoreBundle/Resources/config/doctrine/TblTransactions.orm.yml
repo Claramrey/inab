@@ -1,0 +1,80 @@
+CoreBundle\Entity\TblTransactions:
+    type: entity
+    table: tbl_transactions
+    indexes:
+        fk_transactions_users_idx:
+            columns:
+                - user_id
+        fk_transactions_category_idx:
+            columns:
+                - category_id
+        fk_transactions_payees_idx:
+            columns:
+                - payee_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        transactionDate:
+            type: date
+            nullable: false
+            column: transaction_date
+        payee:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        memo:
+            type: string
+            nullable: true
+            length: 45
+            options:
+                fixed: false
+        amount:
+            type: float
+            nullable: false
+            precision: 11
+            scale: 2
+        createdOn:
+            type: datetime
+            nullable: false
+            column: created_on
+    manyToOne:
+        category:
+            targetEntity: TblCategory
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        payee2:
+            targetEntity: TblPayees
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                payee_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        user:
+            targetEntity: TblUsers
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

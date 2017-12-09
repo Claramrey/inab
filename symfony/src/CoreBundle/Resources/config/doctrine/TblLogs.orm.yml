@@ -1,0 +1,67 @@
+CoreBundle\Entity\TblLogs:
+    type: entity
+    table: tbl_logs
+    repositoryClass: CoreBundle\Repository\TblLogsRepository
+    indexes:
+        fk_log_user_idx:
+            columns:
+                - user_id
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        tableName:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+            column: table_name
+        actionType:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+            column: action_type
+        columnName:
+            type: string
+            nullable: false
+            length: 45
+            options:
+                fixed: false
+            column: column_name
+        fieldId:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: field_id
+        oldValue:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: old_value
+        date:
+            type: datetime
+            nullable: false
+    manyToOne:
+        user:
+            targetEntity: TblUsers
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                user_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

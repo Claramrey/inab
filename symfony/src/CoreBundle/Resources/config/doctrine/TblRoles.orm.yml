@@ -1,0 +1,31 @@
+CoreBundle\Entity\TblRoles:
+    type: entity
+    table: null
+    repositoryClass: CoreBundle\Repository\TblRolesRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        roleId:
+            type: integer
+            unique: true
+            column: role_id
+        name:
+            type: string
+            length: '45'
+        isAdmin:
+            type: boolean
+            column: is_admin
+        deleted:
+            type: boolean
+        createdOn:
+            type: datetime
+            column: created_on
+        updatedOn:
+            type: datetime
+            nullable: true
+            column: updated_on
+    lifecycleCallbacks: {  }

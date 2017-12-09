@@ -1,0 +1,12 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Default:index }
+    
+#security:
+#    resource: "@AdminBundle/Resources/config/routing/security.yml"
+#    prefix: /security
+    
+user:
+    type:     rest
+    resource: AdminBundle\Controller\UserController
+

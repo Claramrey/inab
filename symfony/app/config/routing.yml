@@ -1,0 +1,16 @@
+front:
+    resource: "@FrontBundle/Resources/config/routing.yml"
+    prefix:   /front
+
+
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+    type:   rest
+
+#app:
+#    resource: "@AppBundle/Resources/config/routing.yml"
+#    type:   rest
+
+logout:
+    path: /admin/security/logout
